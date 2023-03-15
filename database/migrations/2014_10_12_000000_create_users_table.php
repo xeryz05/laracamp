@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->string('avatar')->nullable;
-            $table->string('occupation')->nullable; //nullable cause not require
+            $table->string('avatar')->nullable();
+            $table->string('occupation')->nullable(); //nullable cause not require
             $table->boolean('is_admin')->default(false); //default false is to recomend for user not admin
             $table->rememberToken();
             $table->timestamps();

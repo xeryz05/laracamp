@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCheckoutsTable extends Migration
+class CreateCampBenefitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateCheckoutsTable extends Migration
      */
     public function up()
     {
-        Schema::create('checkouts', function (Blueprint $table) {
+        Schema::create('camp_benefits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            // $table->bigInteger('camp_id')->unsigned();
             $table->foreignId('camp_id')->constrained();
-            $table->string('card_number',20);
-            $table->date('expired');
-            $table->string('cvc',3);
-            $table->boolean('is_paid')->default(false);
+            $table->string('name');
             $table->timestamps();
+
+            // $table->foreign('camp_id')->references('id')->on('camps')->onDelete('cascade');
         });
     }
 
@@ -32,6 +31,6 @@ class CreateCheckoutsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('checkouts');
+        Schema::dropIfExists('camp_benefits');
     }
 }
