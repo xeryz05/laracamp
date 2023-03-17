@@ -21,14 +21,36 @@
                     <a class="nav-link" href="#">Business</a>
                 </li>
             </ul>
-            <div class="d-flex">
-                <a href="{{route('login')}}" class="btn btn-master btn-secondary me-3">
-                    Sign In
-                </a>
-                <a href="#" class="btn btn-master btn-primary">
-                    Sign Up
-                </a>
-            </div>
+
+            @auth
+                <div class="d-flex user-logged">
+                    <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        Halo, {{Auth::user()->name}}!
+                        <img src="{{Auth::user()->avatar}}" class="user-photo" style="border-radius:50%" alt="">
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="right:auto; left:auto">
+                            <li>
+                                <a href="" class="dropdown-item">My Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Logout</a>
+                                <form action="{{route('logout')}}" id="logout-form" method="POST" style="display:none">
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}" class="">
+                                </form>
+                            </li>
+                        </ul>
+                    </a>
+                </div>
+            @else
+                <div class="d-flex">
+                    <a href="{{route('login')}}" class="btn btn-master btn-secondary me-3">
+                        Sign In
+                    </a>
+                    <a href="#" class="btn btn-master btn-primary">
+                        Sign Up
+                    </a>
+                </div>
+            @endauth
+            
         </div>
     </div>
 </nav>
